@@ -65,7 +65,7 @@
             alert([testDictionary valueForKeyPath:@"classID"]);
             [workingArray addObject:testDictionary];
         }
-            alert([workingArray valueForKeyPath:@"@avg.classID"]); //works!
+            alert([workingArray valueForKeyPath:@"@avg.classID"]); //works!k
     }
     return self;
 }
