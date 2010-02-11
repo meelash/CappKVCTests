@@ -12,6 +12,7 @@
 @implementation AppController : CPObject
 {
     @outlet CPWindow    theWindow; //this "outlet" is connected automatically by the Cib
+            myObject    testClassObject;
 }
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
@@ -21,18 +22,16 @@
 
 - (void)awakeFromCib
 {
+    testClassObject = [[myObject alloc] init];
+
+    //bug with operators in key path....
     console.log(@"FIRST TEST- WORKS");
-    theObject = [[myObject alloc] init];
-    var data = [theObject valueForKey:@"scoreArray"];
+    var data = [testClassObject valueForKey:@"scoreArray"];
     console.log(data);
     console.log([data valueForKeyPath:@"@sum.intValue"]);
 
     console.log(@"SECOND TEST- DOESN'T WORK");
-    theObject = [[myObject alloc] init];
-    console.log([theObject valueForKeyPath:@"scoreArray.@sum.intValue"]);
-    // This is called when the cib is done loading.
-    // You can implement this method on any object instantiated from a Cib.
-    // It's a useful hook for setting up current UI values, and other things. 
+    console.log([testClassObject valueForKeyPath:@"scoreArray.@sum.intValue"]);
 }
 
 @end
@@ -40,7 +39,7 @@
 
 @implementation myObject : CPObject
 {
-            CPArray     scoreArray @accessors(readonly);
+            CPArray         scoreArray @accessors(readonly);
 }
 - (void)init
 {
