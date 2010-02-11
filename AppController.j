@@ -34,6 +34,7 @@
     console.log([testClassObject valueForKeyPath:@"scoreArray.@sum.intValue"]);
 // Also doesn't work:
 //  console.log([testClassObject valueForKeyPath:@"@sum.scoreArray"]);
+//    alert([testClassObject valueForKeyPath:@"workingArray.@avg.classID"]);
 }
 
 @end
@@ -65,7 +66,7 @@
             alert([testDictionary valueForKeyPath:@"classID"]);
             [workingArray addObject:testDictionary];
         }
-            alert([workingArray valueForKeyPath:@"@avg.classID"]); //works!k
+        alert([workingArray valueForKeyPath:@"@avg.classID"]); //works!
     }
     return self;
 }
